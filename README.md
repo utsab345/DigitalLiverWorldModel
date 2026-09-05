@@ -1,6 +1,6 @@
 # Digital Liver World Model
 
-A JEPA-style world model for digital liver disease progression. Predicts future 8-D clinical states from observed trajectories.
+A unified Python framework for tabular probabilistic regression, time-to-event prediction, and probability distributions — instantiated as a JEPA-style world model for digital liver disease progression that predicts future 8-D clinical states from observed trajectories.
 
 ## State vector
 
