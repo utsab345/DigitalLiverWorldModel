@@ -96,6 +96,16 @@ Constraint projection eliminated all violations without increasing MAE. The mode
 
 Explainability: For one representative high-susceptibility trajectory, Integrated Gradients identified prolonged cholestasis and repeated inflammatory flares as the dominant contributors to the predicted deterioration around month 30, ahead of portal hypertension, fibrosis, and malignancy — consistent with the generator, where sustained inflammatory activity raises cholestasis, accelerates fibrosis, and subsequently raises Malignancy.
 
+## Baselines and ablations
+
+The reproducible experiment matrix is in [`experiments/`](experiments/). It
+covers persistence, GRU-only, full JEPA/VICReg, EMA removal, VICReg removal,
+and constraint removal. Run `python experiments/run_matrix.py --dry-run` to
+review it, then keep the seed and data manifest fixed for every run. Results
+must report short-horizon MAE, 24-month rollout MAE, raw/enforced violation
+rates, and latent standard deviation/covariance. Current results are synthetic
+simulator evidence and do not establish clinical utility.
+
 ## Model Development
 
 Key implementation issues that were corrected:
