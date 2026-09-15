@@ -2,3 +2,7 @@ torch>=2.1.0
 numpy>=1.24.0
 matplotlib>=3.7.0
 seaborn>=0.13.0
+pytest>=8.0
+ruff>=0.6.0
+# Optional: set MLFLOW_TRACKING_URI to enable remote experiment tracking.
+mlflow>=2.15.0

@@ -20,10 +20,13 @@ from losses import JEPALoss, ReconstructionLoss
 from evaluate import evaluate
 from explain import explain_sample
 from utils import set_seed, plot_training_snapshot
+from experiment import ExperimentLogger, set_deterministic_seed
 
 
 def train(cfg: Config):
     set_seed(cfg.seed)
+    set_deterministic_seed(cfg.seed)
+    logger = ExperimentLogger(cfg)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Device: {device}")
 
@@ -151,6 +154,8 @@ def train(cfg: Config):
                     val_loss += loss.item()
             val_loss /= len(val_loader)
             n = len(train_loader)
+            logger.log(epoch + 1, {"train_loss": total_loss / n, "val_loss": val_loss,
+                        "jepa_loss": total_jepa / n, "reconstruction_loss": total_recon / n})
             print(f"Epoch {epoch+1}/{cfg.epochs}  train={total_loss/n:.4f}  "
                   f"j={total_jepa/n:.4f} r={total_recon/n:.4f} c={total_c/n:.4f}  "
                   f"val={val_loss:.4f}")
@@ -201,6 +206,7 @@ def train(cfg: Config):
     print(f"  Feature attributions at last timestep: "
           f"{attrs[-1, :].abs().argsort(descending=True).tolist()}")
 
+    logger.close()
     return model, results
 
 

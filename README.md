@@ -56,6 +56,25 @@ python evaluate.py
 python explain.py
 ```
 
+## MLOps quickstart
+
+Training is deterministic for a fixed seed and writes metrics to
+`outputs/logs/metrics.jsonl`. Set `MLFLOW_TRACKING_URI` to mirror the same
+parameters, metrics, and run metadata to an MLflow server; MLflow remains
+optional for local runs. The CI workflow runs linting and tests on every push
+and pull request.
+
+```bash
+cd digital_liver_world_model
+pip install -r requirements.txt
+python train.py
+```
+
+The `RequestMetrics` helper in `telemetry.py` provides request counts, latency,
+errors, and constraint-violation counters for an API layer. Clinical data is
+not bundled: connect an approved, de-identified source through a separate ETL
+adapter and document its governance before training.
+
 ## Results
 
 Trained on 300 synthetic trajectories (120 months each), predicts 12-month horizon from 24-month context. 80/10/10 train/val/test split (20,400 / 2,550 / 2,550 samples). Early stopping at epoch 80 (patience 30).
