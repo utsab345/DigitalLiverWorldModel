@@ -29,6 +29,7 @@ encoder (GAT with causal disease-graph mask)
                                          ↓
                            integrated gradients (explainability)
 ```
+<img width="845" height="813" alt="image" src="https://github.com/user-attachments/assets/51bc41ad-8675-4d7b-b620-b60d5c8ab708" />
 
 The final architecture combines:
 - Graph Attention Network (GAT) encoder — follows the disease graph (Inflammation → Fibrosis, Cholestasis → Fibrosis)
