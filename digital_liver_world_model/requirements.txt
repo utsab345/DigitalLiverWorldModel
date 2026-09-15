@@ -6,3 +6,10 @@ pytest>=8.0
 ruff>=0.6.0
 # Optional: set MLFLOW_TRACKING_URI to enable remote experiment tracking.
 mlflow>=2.15.0
+fastapi>=0.115.0
+uvicorn>=0.30.0
+celery>=5.4.0
+redis>=5.0.0
+prometheus-client>=0.20.0
+streamlit>=1.37.0
+requests>=2.32.0

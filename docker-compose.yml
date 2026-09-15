@@ -1,0 +1,13 @@
+services:
+  api:
+    build: {context: ., dockerfile: docker/Dockerfile}
+    ports: ["8000:8000"]
+    environment: {MODEL_VERSION: dev, CELERY_BROKER_URL: redis://redis:6379/0}
+    depends_on: [redis]
+  redis:
+    image: redis:7-alpine
+  worker:
+    build: {context: ., dockerfile: docker/Dockerfile}
+    command: celery -A worker.tasks worker --loglevel=INFO
+    environment: {CELERY_BROKER_URL: redis://redis:6379/0}
+    depends_on: [redis]
